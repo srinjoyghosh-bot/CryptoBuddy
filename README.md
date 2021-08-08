@@ -18,7 +18,7 @@
 - Java
 - SQLite
 - Firebase
-
+- Android Studio
 
 ## Features
 
