@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:id="@+id/home_frag"
+    android:title="Home"
+    android:icon="@drawable/ic_outline_home_24"
+    ></item>
+    <item android:id="@+id/search_frag"
+        android:title="Search"
+        android:icon="@drawable/outline_search_24"
+        ></item>
+    <item android:id="@+id/fav_frag"
+        android:title="Favourites"
+        android:icon="@drawable/outline_favorite_24"
+        ></item>
+    <item android:id="@+id/targets_frag"
+        android:title="Targets"
+        android:icon="@drawable/ic_baseline_attach_money_white_24"
+        ></item>
+</menu>

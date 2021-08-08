@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@color/black">
+
+    <com.example.cryptoapp.EmptyRecyclerView
+        android:layout_marginTop="8dp"
+        android:id="@+id/favourites_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:visibility="invisible"
+        ></com.example.cryptoapp.EmptyRecyclerView>
+    <TextView
+        android:id="@+id/empty_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Favourites Added"
+        android:layout_centerInParent="true"
+        android:textSize="18sp"
+        android:textColor="@color/orange"
+
+        android:visibility="invisible"
+        ></TextView>
+
+
+
+
+</RelativeLayout>
+
+<!--<LinearLayout-->
+<!--android:id="@+id/progress_view_fav"-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:orientation="vertical"-->
+<!--android:layout_centerInParent="true"-->
+<!--android:visibility="visible">-->
+<!--<ProgressBar-->
+<!--    android:layout_gravity="center"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginBottom="8dp"-->
+<!--    android:indeterminate="true"-->
+<!--    android:indeterminateTintMode="src_atop"-->
+<!--    android:indeterminateTint="@color/orange"-->
+<!--    ></ProgressBar>-->
+<!--<TextView-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:text="Getting Favourites..."></TextView>-->
+<!--</LinearLayout>-->

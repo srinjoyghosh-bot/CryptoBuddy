@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CryptoActivity"
+    android:background="@color/black"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/currency_base"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:background="@drawable/list_item_bg">
+        <TextView
+
+            android:textColor="@color/white"
+            android:id="@+id/currency_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:text="Asset Quote"></TextView>
+
+        <Spinner
+
+            android:layout_alignParentRight="true"
+            android:id="@+id/currency_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dialog"
+            android:backgroundTint="@color/orange_border"></Spinner>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/current_data"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:background="@drawable/list_item_bg">
+        <TextView
+            android:textColor="@color/white"
+            android:id="@+id/current_rate_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:text="Current Rate"></TextView>
+
+        <TextView
+            android:layout_alignParentRight="true"
+            android:textColor="@color/orange_border"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/crypto_rate_live"
+            android:text="---"
+            android:textSize="18sp"
+            android:layout_marginRight="16dp"
+            android:gravity="center_horizontal"></TextView>
+    </RelativeLayout>
+    <LinearLayout
+        android:padding="8dp"
+        android:layout_margin="16dp"
+        android:layout_below="@id/current_data"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="12"
+        android:background="@drawable/list_item_bg"
+        android:id="@+id/graph"
+        android:orientation="vertical"
+        >
+        <com.github.mikephil.charting.charts.LineChart
+
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"></com.github.mikephil.charting.charts.LineChart>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/red_legend"
+                android:layout_marginRight="8dp"></ImageView>
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daily Highest"
+                android:layout_marginRight="8dp"></TextView>
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/blue_legend"
+                android:layout_marginRight="8dp"></ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daily Lowest"></TextView>
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/date_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+
+        >
+        <TextView
+            android:padding="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="From"></TextView>
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_date">
+        <Button
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:padding="8dp"
+            android:id="@+id/start_date"
+            android:background="?attr/selectableItemBackground"
+            android:text="---"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ></Button>
+        </FrameLayout>
+        <TextView
+            android:padding="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="To"></TextView>
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_date">
+        <Button
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:padding="8dp"
+            android:id="@+id/end_date"
+            android:background="?attr/selectableItemBackground"
+            android:text="---"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></Button>
+        </FrameLayout>
+        <FrameLayout
+            android:layout_marginLeft="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            >
+        <Button
+            android:padding="16dp"
+            android:id="@+id/update_graph"
+            android:layout_margin="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GO"
+            android:background="@drawable/small_button"
+            android:enabled="false"
+            ></Button>
+        </FrameLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

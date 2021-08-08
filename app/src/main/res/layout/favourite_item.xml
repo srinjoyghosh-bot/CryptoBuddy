@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/list_item_bg"
+    android:padding="16dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginLeft="8dp">
+    <TextView
+        android:id="@+id/crypto_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bitcoin"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        ></TextView>
+    <TextView
+        android:layout_below="@+id/crypto_name"
+        android:id="@+id/asset_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BTC"
+        android:textSize="18sp"
+
+        ></TextView>
+    <ImageView
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/outline_arrow_forward_white_24"></ImageView>
+
+</RelativeLayout>

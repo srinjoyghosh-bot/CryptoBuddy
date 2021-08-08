@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginLeft="8dp"
+    android:background="@drawable/list_item_bg">
+    <TextView
+        android:layout_marginLeft="8dp"
+        android:text="hello"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:padding="8dp"
+        android:id="@+id/asset_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ></TextView>
+    <ImageView
+        android:layout_alignParentRight="true"
+        android:padding="8dp"
+        android:paddingLeft="0dp"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:layout_height="wrap_content"
+        android:src="@drawable/outline_arrow_forward_white_24"></ImageView>
+
+</RelativeLayout>

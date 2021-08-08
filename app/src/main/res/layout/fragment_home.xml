@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    android:background="@color/black">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:background="@drawable/header_bg"
+        android:paddingTop="32dp"
+        >
+        <TextView
+            android:fontFamily="sans-serif-smallcaps"
+            android:layout_above="@id/user_name"
+            android:id="@+id/hello_text"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hello "
+            android:gravity="center"
+            android:textSize="40sp"></TextView>
+        <TextView
+            android:layout_centerInParent="true"
+            android:fontFamily="sans-serif-thin"
+            android:id="@+id/user_name"
+            android:layout_marginLeft="16dp"
+            android:textSize="50sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text=""></TextView>
+    </RelativeLayout>
+
+    <RelativeLayout
+
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/black">
+        <TextView
+            android:id="@+id/intro_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="From a meme base Dogecoin seeing a gain of over 100% to the biggest crash crypto market has ever seen all caused by a billionaire’s tweet, the cryptocurrency trading market has seen it all. With CryptoBuddy, stay updated about the exchange rates of 10000+ cryptocurrencies at once and keep track of your own targets and step losses!"
+            android:textSize="18sp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"></TextView>
+
+        <Button
+            android:layout_alignParentBottom="true"
+            android:id="@+id/sign_out"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="32dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/small_button"
+            android:text="Sign Out"></Button>
+    </RelativeLayout>
+
+
+</LinearLayout>
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    tools:context=".HomeActivity"-->
+<!--    android:orientation="vertical"-->
+<!--    android:background="@color/black">-->
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="1"-->
+<!--        android:orientation="vertical"-->
+<!--        android:background="@drawable/header_bg"-->
+<!--        android:paddingTop="32dp"-->
+<!--        >-->
+<!--        <TextView-->
+<!--            android:fontFamily="sans-serif-smallcaps"-->
+<!--            android:layout_above="@id/user_name"-->
+<!--            android:id="@+id/hello_text"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_marginLeft="16dp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Hello "-->
+<!--            android:gravity="center"-->
+<!--            android:textSize="40sp"></TextView>-->
+<!--        <TextView-->
+<!--            android:layout_centerInParent="true"-->
+<!--            android:fontFamily="sans-serif-thin"-->
+<!--            android:id="@+id/user_name"-->
+<!--            android:layout_marginLeft="16dp"-->
+<!--            android:textSize="50sp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center"-->
+<!--            android:text="Srinjoy!"></TextView>-->
+<!--    </RelativeLayout>-->
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="1">-->
+<!--        <LinearLayout-->
+
+<!--            android:orientation="vertical"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:background="@color/black">-->
+<!--            <Button-->
+<!--                android:id="@+id/search_btn"-->
+
+<!--                android:layout_marginBottom="16dp"-->
+<!--                android:layout_marginLeft="8dp"-->
+<!--                android:layout_marginRight="8dp"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@drawable/home_buttons"-->
+<!--                android:padding="8dp"-->
+<!--                android:text="Search CryptoCurrency"></Button>-->
+<!--            <Button-->
+<!--                android:id="@+id/favourites_button"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:layout_marginBottom="16dp"-->
+<!--                android:layout_marginLeft="8dp"-->
+<!--                android:layout_marginRight="8dp"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@drawable/home_buttons"-->
+<!--                android:text="Check Favourites"></Button>-->
+<!--            <Button-->
+<!--                android:id="@+id/targets_button"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:layout_marginBottom="16dp"-->
+<!--                android:layout_marginLeft="8dp"-->
+<!--                android:layout_marginRight="8dp"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@drawable/home_buttons"-->
+<!--                android:text="Check Targets"></Button>-->
+<!--            <Button-->
+<!--                android:id="@+id/sign_out"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:layout_marginBottom="16dp"-->
+<!--                android:layout_marginLeft="8dp"-->
+<!--                android:layout_marginRight="8dp"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@drawable/small_button"-->
+<!--                android:text="Sign Out"></Button>-->
+<!--        </LinearLayout>-->
+<!--    </ScrollView>-->
+
+<!--</LinearLayout>-->
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+
+<!--        xmlns:tools="http://schemas.android.com/tools"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        tools:context=".HomeActivity"-->
+<!--        android:orientation="vertical"-->
+<!--    android:background="@color/black">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:orientation="vertical"-->
+<!--            android:background="@drawable/header_bg"-->
+<!--            android:paddingTop="32dp"-->
+<!--            >-->
+<!--       <TextView-->
+<!--           android:fontFamily="sans-serif-smallcaps"-->
+<!--           android:layout_centerInParent="true"-->
+<!--           android:id="@+id/hello_text"-->
+<!--           android:layout_marginTop="16dp"-->
+<!--           android:layout_marginLeft="16dp"-->
+<!--           android:layout_width="match_parent"-->
+<!--           android:layout_height="wrap_content"-->
+<!--           android:text="Hello "-->
+<!--           android:gravity="center"-->
+<!--           android:textSize="40sp"></TextView>-->
+<!--        <TextView-->
+<!--    android:fontFamily="sans-serif-thin"-->
+<!--           android:id="@+id/user_name"-->
+<!--            android:layout_marginLeft="16dp"-->
+<!--            android:textSize="50sp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center"-->
+<!--            android:text="Srinjoy!"></TextView>-->
+<!--        </LinearLayout>-->
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="1">-->
+<!--        <LinearLayout-->
+
+<!--            android:orientation="vertical"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@color/black">-->
+<!--            <Button-->
+<!--                android:id="@+id/search_btn"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginBottom="16dp"-->
+<!--                android:layout_marginLeft="8dp"-->
+<!--                android:layout_marginRight="8dp"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@drawable/home_buttons"-->
+<!--                android:padding="8dp"-->
+<!--                android:text="Search CryptoCurrency"></Button>-->
+<!--            <Button-->
+<!--                android:id="@+id/favourites_button"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginBottom="16dp"-->
+<!--                android:layout_marginLeft="8dp"-->
+<!--                android:layout_marginRight="8dp"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@drawable/home_buttons"-->
+<!--                android:text="Check Favourites"></Button>-->
+<!--            <Button-->
+<!--                android:id="@+id/targets_button"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginBottom="16dp"-->
+<!--                android:layout_marginLeft="8dp"-->
+<!--                android:layout_marginRight="8dp"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@drawable/home_buttons"-->
+<!--                android:text="Check Targets"></Button>-->
+<!--            <Button-->
+<!--                android:id="@+id/sign_out"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginBottom="16dp"-->
+<!--                android:layout_marginLeft="8dp"-->
+<!--                android:layout_marginRight="8dp"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@drawable/small_button"-->
+<!--                android:text="Sign Out"></Button>-->
+<!--        </LinearLayout>-->
+<!--    </ScrollView>-->
+<!--    </LinearLayout>-->
+
+<!-- -->

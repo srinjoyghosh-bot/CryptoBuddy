@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">CryptoBuddy</string>
+    <string name="title_activity_crypto">CryptoActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="hint"><font size="18">Search CryptoCurrency</font></string>
+    <string name="sign_in"><u>Sign Up</u></string>
+    <string name="forgot_password"><u>Forgot Password?</u></string>
+
+</resources>

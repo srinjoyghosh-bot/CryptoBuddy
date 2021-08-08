@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <ImageView
+        android:id="@+id/logo_sign_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher_crypto_round"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/sign_in_app_name"></ImageView>
+    <TextView
+        android:layout_marginTop="8dp"
+        android:id="@+id/sign_in_app_name"
+        android:layout_marginBottom="48dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textColor="@color/orange"
+        android:layout_above="@id/enter_name"
+        android:layout_centerHorizontal="true"
+        android:textSize="24dp"></TextView>
+    <EditText
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/enter_name"
+        android:hint=" Full Name"
+        android:textColorHint="@color/orange"
+        android:background="@drawable/login_item"
+        android:padding="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"></EditText>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/enter_name"
+        android:id="@+id/enter_age"
+        android:hint=" Age"
+        android:textColorHint="@color/orange"
+        android:background="@drawable/login_item"
+        android:padding="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:inputType="number"></EditText>
+
+    <EditText
+        android:layout_below="@id/enter_age"
+        android:id="@+id/enter_email"
+        android:padding="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:background="@drawable/login_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint=" Email "
+        android:textColorHint="@color/orange"
+        android:textSize="18sp"
+        ></EditText>
+    <EditText
+        android:id="@+id/enter_password"
+        android:inputType="textPassword"
+        android:layout_below="@+id/enter_email"
+        android:padding="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:background="@drawable/login_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint=" Password "
+        android:textColorHint="@color/orange"
+        android:textSize="18sp"
+        ></EditText>
+    <Button
+        android:id="@+id/sign_up_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:background="@drawable/small_button"
+        android:text="Sign up"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:layout_below="@+id/enter_password"
+        ></Button>
+    <ProgressBar
+        android:id="@+id/sign_up_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"></ProgressBar>
+</RelativeLayout>

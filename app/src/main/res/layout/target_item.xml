@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_item_bg"
+    android:padding="16dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp">
+    <TextView
+        android:id="@+id/name_asset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bitcoin (BTC)"
+        android:textSize="24sp"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/white"
+        ></TextView>
+    <TextView
+        android:layout_alignParentRight="true"
+        android:id="@+id/quote_asset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="USD"
+        android:textSize="24sp"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/orange"
+        ></TextView>
+    <TextView
+        android:layout_below="@+id/name_asset"
+        android:id="@+id/target"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Target Price: "
+        android:textSize="18sp"
+        ></TextView>
+    <TextView
+        android:layout_below="@+id/target"
+        android:id="@+id/stop_loss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stop Loss Price: "
+        android:textSize="18sp"
+        ></TextView>
+    <TextView
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/quote_asset"
+        android:id="@+id/target_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1320"
+        android:textSize="18sp"
+        android:textColor="@color/light_orange"
+        ></TextView>
+    <TextView
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/target_value"
+        android:id="@+id/stop_loss_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1320"
+        android:textSize="18sp"
+        android:textColor="@color/light_orange"
+        ></TextView>
+
+
+</RelativeLayout>
