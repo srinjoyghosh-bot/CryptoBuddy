@@ -11,7 +11,7 @@
 
 ## General Information
 - With CryptoBuddy, keep track of the fluctuations of 10000+ cryptocurrencies at once.
-- With the cryptocurrency market, being as inconsistent as it gets, CryptoBuddy helps one to keep track of their own choice of cryptocurrencies and keep records of specific targets and stop losses
+- With the cryptocurrency market, being as inconsistent as it gets, CryptoBuddy helps one to keep track of their own choice of cryptocurrencies and keep records of specific targets and stop losses, in 5 different currenccies, namely US Dollar, Euro, Yen, Swiss Franc and Indian Rupee
 
 
 ## Technologies Used
