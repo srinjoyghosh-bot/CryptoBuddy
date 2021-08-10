@@ -1,5 +1,6 @@
 # CryptoBuddy 
 > From a meme base Dogecoin seeing a gain of over 100% to the biggest crash crypto market has ever seen all caused by a billionaire’s tweet, the cryptocurrency trading market has seen it all. With CryptoBuddy, stay updated about the exchange rates of 10000+ cryptocurrencies at once and keep track of your own targets and step losses!
+> Demo [_here_](https://drive.google.com/drive/folders/1-bGH5eIyqoBZvsHVurMxo14AYV6JL3TB?usp=sharing).
 
 ## Table of Contents
 * [General Info](#general-information)
