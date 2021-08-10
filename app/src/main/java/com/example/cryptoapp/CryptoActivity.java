@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
@@ -35,6 +36,7 @@ import com.github.mikephil.charting.components.IMarker;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -67,7 +69,6 @@ public class CryptoActivity extends AppCompatActivity implements AdapterView.OnI
     private LocalDateTime nowDate=LocalDateTime.now();
     private LocalDateTime prevDate=nowDate.minusDays(6);
     private Crypto currentCrypto;
-
     private Button startDate;
     private Button endDate;
     private Button goButton;
@@ -77,14 +78,10 @@ public class CryptoActivity extends AppCompatActivity implements AdapterView.OnI
     private Button dateButtonToBeUpdated;
     private String assetQuoteSelected="USD";
     private String quoteSelection;
-    private CryptoDbHelper dbHelper;
 
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mFavouritesDatabaseReference;
-
-    private Menu menuCrypto;
     private double liveRate;
-
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -156,8 +153,8 @@ public class CryptoActivity extends AppCompatActivity implements AdapterView.OnI
         });
 
         mFirebaseDatabase=FirebaseDatabase.getInstance();
-        mFavouritesDatabaseReference=mFirebaseDatabase.getReference().child("favourites");
-        dbHelper=new CryptoDbHelper(getApplicationContext(),null);
+        mFavouritesDatabaseReference=mFirebaseDatabase.getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("favourites");
+
     }
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -321,11 +318,10 @@ public class CryptoActivity extends AppCompatActivity implements AdapterView.OnI
         });
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menuCrypto=menu;
         getMenuInflater().inflate(R.menu.crypto_menu,menu);
-
         if (currentCrypto.isFavourite())
         {
             menu.findItem(R.id.fav_heart).setIcon(R.drawable.heart);
@@ -348,11 +344,8 @@ public class CryptoActivity extends AppCompatActivity implements AdapterView.OnI
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot cryptoSnapshot : snapshot.getChildren()) {
                             cryptoSnapshot.getRef().removeValue();
-                            dbHelper.removeFromFavourite(currentCrypto.getCryptoName(),currentCrypto.getCryptoAbbreviation());
                         }
-
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                         Log.e(TAG, "onCancelled", error.toException());
@@ -360,14 +353,10 @@ public class CryptoActivity extends AppCompatActivity implements AdapterView.OnI
                 });
                 Toast.makeText(getApplicationContext(),"Removed from Favourites",Toast.LENGTH_LONG).show();
             } else {
-
                 item.setIcon(R.drawable.heart);
                 item.setChecked(true);
                 currentCrypto.setFavourite(true);
                 mFavouritesDatabaseReference.push().setValue(currentCrypto);
-
-                dbHelper.updateToFavourite(currentCrypto.getCryptoName(),currentCrypto.getCryptoAbbreviation());
-
                 Toast.makeText(getApplicationContext(),"Added to Favourites",Toast.LENGTH_LONG).show();
             }
         }
@@ -379,7 +368,6 @@ public class CryptoActivity extends AppCompatActivity implements AdapterView.OnI
             intent.putExtra("currentRate",liveRate);
             startActivity(intent);
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

@@ -26,10 +26,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -54,7 +62,9 @@ public class SearchFragment extends Fragment implements CryptoLiveListAdapter.On
     private View ProgressView;
     private SwipeRefreshLayout swipeRefreshLayout;
     private FloatingActionButton upwardFAB;
-    private CryptoDbHelper dbHelper;
+
+    private boolean favouriteChecker;
+    public List<String> favList;
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Nullable
     @org.jetbrains.annotations.Nullable
@@ -69,11 +79,9 @@ public class SearchFragment extends Fragment implements CryptoLiveListAdapter.On
         searchKeyListener=mSearchText.getKeyListener();
         mSearchText.setKeyListener(null);
         upwardFAB=view.findViewById(R.id.upward_arrow);
-
         ProgressView=view.findViewById(R.id.progress);
-
         swipeRefreshLayout=view.findViewById(R.id.swipe_refresh);
-        dbHelper=new CryptoDbHelper(getContext(),null);
+
         Retrofit retrofit=new Retrofit.Builder()
                 .baseUrl("https://rest.coinapi.io/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -85,17 +93,13 @@ public class SearchFragment extends Fragment implements CryptoLiveListAdapter.On
             public void onResponse(Call<List<CryptoLive>> call, Response<List<CryptoLive>> response) {
                 if (response.isSuccessful())
                 {
-
                     List<CryptoLive> cryptos=response.body();
                     for (CryptoLive crypto:cryptos)
                     {
 
                         if (crypto.getType()==1)
                         {
-
                             cryptoList.add(crypto);
-
-
                         }
                         else
                         {
@@ -115,19 +119,12 @@ public class SearchFragment extends Fragment implements CryptoLiveListAdapter.On
 
                         }
                     });
-
-
-
                 }
-
                 else
                 {
-
                     Toast.makeText(getActivity(), "No data from API", Toast.LENGTH_LONG).show();
                     Log.e("OnResponse CryptoList","response unsuccessful");
-
                 }
-
             }
             @Override
             public void onFailure(Call<List<CryptoLive>> call, Throwable t) {
@@ -136,17 +133,6 @@ public class SearchFragment extends Fragment implements CryptoLiveListAdapter.On
 
             }
         });
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (CryptoLive crypto:cryptoList
-                ) {
-                    dbHelper.addCrypto(crypto);
-
-                }
-            }
-        }).start();
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -186,8 +172,7 @@ public class SearchFragment extends Fragment implements CryptoLiveListAdapter.On
                         }
                         else
                         {
-                            View noDataView=view.findViewById(R.id.no_data);
-                            noDataView.setVisibility(View.VISIBLE);
+
                             ProgressView.setVisibility(View.INVISIBLE);
                             Toast.makeText(getActivity(), "No data from API", Toast.LENGTH_LONG).show();
                             Log.e("OnResponse CryptoList","response unsuccessful");
@@ -254,11 +239,11 @@ public class SearchFragment extends Fragment implements CryptoLiveListAdapter.On
 
 
 
+
     @Override
     public void onCryptoClick(int position) {
         CryptoLive currentCrypto;
-
-
+        final Crypto[] crypto = {null};
         if (isListFiltered)
         {
             currentCrypto=filteredList.get(position);
@@ -266,19 +251,43 @@ public class SearchFragment extends Fragment implements CryptoLiveListAdapter.On
         else
         {
             currentCrypto=cryptoList.get(position);
+
         }
+        DatabaseReference favRef=FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("favourites");
+        favRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                boolean isFav=false;
+                for (DataSnapshot favSnap:snapshot.getChildren())
+                {
+                    String name=favSnap.child("Cname").getValue(String.class);
+                    if (name.trim().equalsIgnoreCase(currentCrypto.getName().trim()))
+                    {
+                        isFav=true;
+                        crypto[0] = new Crypto(currentCrypto.getName(), currentCrypto.getAsset_Id(), true);
+                        Intent intent=new Intent(getActivity(),CryptoActivity.class);
+                        intent.putExtra("cryptoObject", crypto[0]);
+                        startActivity(intent);
+                        break;
+                    }
+                }
+                if (!isFav)
+                {
+                    crypto[0] = new Crypto(currentCrypto.getName(), currentCrypto.getAsset_Id(), false);
+                    Intent intent=new Intent(getActivity(),CryptoActivity.class);
+                    intent.putExtra("cryptoObject", crypto[0]);
+                    startActivity(intent);
+                    return;
+                }
+            }
 
-        SQLiteDatabase database=dbHelper.getWritableDatabase();
-        boolean isFav=dbHelper.checkIfFavourite(currentCrypto.getName());
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
 
-        Crypto crypto = new Crypto(currentCrypto.getName(), currentCrypto.getAsset_Id(), isFav);
-
-        Intent intent=new Intent(getActivity(),CryptoActivity.class);
-        intent.putExtra("cryptoObject", crypto);
-        startActivity(intent);
 
     }
-
     public void filter(String text){
 
         filteredList = new ArrayList<>();
@@ -300,40 +309,7 @@ public class SearchFragment extends Fragment implements CryptoLiveListAdapter.On
             toast.setGravity(Gravity.TOP,0,0);
             toast.show();
         }
-
         mAdapter.filterList(filteredList);
-
     }
 
-
-    public int isCryptoAvailable(CryptoLive cryptoLive)
-    {
-        final int[] k = new int[1];
-        String abbreviation=cryptoLive.getAsset_Id();
-        Retrofit retrofit=new Retrofit.Builder()
-                .baseUrl("https://rest.coinapi.io/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        CryptoApi cryptoApi=retrofit.create(CryptoApi.class);
-        Call<CryptoRate> call=cryptoApi.getRate(abbreviation,"USD");
-        call.enqueue(new Callback<CryptoRate>() {
-            @Override
-            public void onResponse(Call<CryptoRate> call, Response<CryptoRate> response) {
-                if (response.isSuccessful())
-                    k[0] =1;
-                else
-                    k[0]=0;
-
-            }
-            @Override
-            public void onFailure(Call<CryptoRate> call, Throwable t) {
-                k[0]=0;
-
-            }
-        });
-        return k[0];
-    }
-    public List<CryptoLive> getCurrencyList(){
-        return notCryptoList;
-    }
 }

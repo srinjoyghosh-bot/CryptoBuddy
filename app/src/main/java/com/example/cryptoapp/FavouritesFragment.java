@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -35,10 +36,6 @@ public class FavouritesFragment extends Fragment {
     private FavouritesAdapter mAdapter;
     private DatabaseReference favouritesReference;
     private TextView EmptyView;
-
-
-
-
     @Nullable
     @org.jetbrains.annotations.Nullable
     @Override
@@ -47,35 +44,17 @@ public class FavouritesFragment extends Fragment {
         getActivity().setTitle("Favourites");
         setHasOptionsMenu(true);
         mRecyclerView=view.findViewById(R.id.favourites_rv);
-        favouritesReference= FirebaseDatabase.getInstance().getReference().child("favourites");
+        favouritesReference= FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("favourites");
 
         mRecyclerView.setLayoutManager(new LayoutManagerWrapper(getContext(), LinearLayoutManager.VERTICAL, false));
         EmptyView=view.findViewById(R.id.empty_view);
         mRecyclerView.setEmptyView(EmptyView);
 
-
-
-
-
-
-
         FirebaseRecyclerOptions<Crypto> options=new FirebaseRecyclerOptions.Builder<Crypto>()
                 .setQuery(favouritesReference,Crypto.class)
                 .build();
-
-
         mAdapter=new FavouritesAdapter(options);
-
-
         mRecyclerView.setAdapter(mAdapter);
-
-
-
-
-
-
-
-
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT) {
             @Override
@@ -87,15 +66,9 @@ public class FavouritesFragment extends Fragment {
             public void onSwiped(@NonNull @NotNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int index=viewHolder.getAdapterPosition();
                 Crypto crypto=mAdapter.getItem(index);
-
                 mAdapter.deleteItem(index);
-                CryptoDbHelper cryptoDbHelper=new CryptoDbHelper(getContext(),null);
-                cryptoDbHelper.removeFromFavourite(crypto.getCryptoName(),crypto.getCryptoAbbreviation());
+
                 Toast.makeText(getContext(), "Item Removed From Favourites", Toast.LENGTH_SHORT).show();
-
-
-
-
             }
 
             @Override
@@ -133,9 +106,19 @@ public class FavouritesFragment extends Fragment {
         super.onStop();
         mAdapter.stopListening();
     }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.delete_menu,menu);
+        super.onCreateOptionsMenu(menu,inflater);
+    }
 
-
-
-
-
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId()==R.id.delete_all)
+        {
+            favouritesReference.removeValue();
+            mAdapter.notifyDataSetChanged();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

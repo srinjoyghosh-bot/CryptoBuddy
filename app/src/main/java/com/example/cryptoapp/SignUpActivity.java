@@ -1,10 +1,13 @@
 package com.example.cryptoapp;
 
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -27,6 +30,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText mPasswordText;
     private Button mSignUpButton;
     private ProgressBar mProgressBar;
+    private ImageView showPassword;
 
 
     @Override
@@ -40,11 +44,26 @@ public class SignUpActivity extends AppCompatActivity {
         mPasswordText=findViewById(R.id.enter_password);
         mSignUpButton=findViewById(R.id.sign_up_btn);
         mProgressBar=findViewById(R.id.sign_up_progress);
+        showPassword=findViewById(R.id.password_lock_sign_in);
         mFirebaseAuth=FirebaseAuth.getInstance();
         mSignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 registerUser();
+            }
+        });
+        showPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mPasswordText.getTransformationMethod().equals(PasswordTransformationMethod.getInstance()))
+                {
+                    mPasswordText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+
+                }
+                else
+                {
+                    mPasswordText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
             }
         });
 

@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -71,7 +72,7 @@ public class SetTargetActivity extends AppCompatActivity {
         currentRateText.setText(String.valueOf(currentCryptoRate));
 
         mDb=FirebaseDatabase.getInstance();
-        mTargetsReference=mDb.getReference().child("targets");
+        mTargetsReference=mDb.getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("targets");
 
         mTargetText.addTextChangedListener(new TextWatcher() {
             @Override

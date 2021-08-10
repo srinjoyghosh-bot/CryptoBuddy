@@ -2,10 +2,13 @@ package com.example.cryptoapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressBar mProgressBar;
     private FirebaseAuth mAuth;
     private Button mLogInButton;
+    private ImageView showPassword;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         mProgressBar=findViewById(R.id.login_progress);
         mLogInButton=findViewById(R.id.login_btn);
         ForgotPassword=findViewById(R.id.forgot_password);
+        showPassword=findViewById(R.id.password_lock);
         mAuth=FirebaseAuth.getInstance();
         SignUpText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +59,20 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this,ForgotPasswordActivity.class));
+            }
+        });
+        showPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mPassword.getTransformationMethod().equals(PasswordTransformationMethod.getInstance()))
+                {
+                    mPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+
+                }
+                else
+                {
+                    mPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
             }
         });
 

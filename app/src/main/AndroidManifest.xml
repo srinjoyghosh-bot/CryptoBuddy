@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
 
     <application
         android:allowBackup="true"
@@ -26,7 +28,8 @@
         <activity android:name=".ForgotPasswordActivity" android:parentActivityName=".LoginActivity" android:label="Reset Password"></activity>
         <activity
             android:name=".DefaultActivity"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan"
+            android:largeHeap="true">
 
         </activity>
 
@@ -35,7 +38,8 @@
             android:label="Set Target and Stop-Loss"
             android:parentActivityName=".CryptoActivity"/>
 
-        <activity android:name=".CryptoActivity" />
+        <activity android:name=".CryptoActivity"
+        />
 
     </application>
 

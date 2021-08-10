@@ -24,8 +24,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -43,7 +47,6 @@ public class TargetsFragment extends Fragment {
     private TargetsAdapter mAdapter;
     private DatabaseReference targetReference;
     private TextView emptyView;
-    private NotificationHelper notificationHelper;
     private List<CryptoTargets> targetCryptoList;
     @Nullable
     @org.jetbrains.annotations.Nullable
@@ -56,10 +59,10 @@ public class TargetsFragment extends Fragment {
         mRecyclerView=view.findViewById(R.id.targets_rv);
         emptyView=view.findViewById(R.id.empty_text);
 
-        targetReference= FirebaseDatabase.getInstance().getReference().child("targets");
+        targetReference= FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("targets");
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setEmptyView(emptyView);
-        notificationHelper=new NotificationHelper(getActivity());
+
 
         FirebaseRecyclerOptions<CryptoTargets> options=new FirebaseRecyclerOptions.Builder<CryptoTargets>()
                 .setQuery(targetReference,CryptoTargets.class)
@@ -78,10 +81,6 @@ public class TargetsFragment extends Fragment {
                 CryptoTargets crypto=mAdapter.getItem(viewHolder.getAdapterPosition());
                 mAdapter.deleteItem(viewHolder.getAdapterPosition());
                 Toast.makeText(getContext(), "Item Removed", Toast.LENGTH_SHORT).show();
-
-
-
-
             }
 
             @Override
@@ -94,6 +93,7 @@ public class TargetsFragment extends Fragment {
                 super.onChildDrawOver(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
             }
         }).attachToRecyclerView(mRecyclerView);
+
 
         return view;
     }
