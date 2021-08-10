@@ -36,7 +36,7 @@
         <activity
             android:name=".SetTargetActivity"
             android:label="Set Target and Stop-Loss"
-            android:parentActivityName=".CryptoActivity"/>
+           />
 
         <activity android:name=".CryptoActivity"
         />
