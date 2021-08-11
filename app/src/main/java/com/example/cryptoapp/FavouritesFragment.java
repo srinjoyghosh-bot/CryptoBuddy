@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -67,8 +68,14 @@ public class FavouritesFragment extends Fragment {
                 int index=viewHolder.getAdapterPosition();
                 Crypto crypto=mAdapter.getItem(index);
                 mAdapter.deleteItem(index);
+                Snackbar.make(mRecyclerView,"Removed from Favourites", BaseTransientBottomBar.LENGTH_LONG)
+                        .setAction("UNDO", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                mAdapter.addItem(crypto,index);
+                            }
+                        }).show();
 
-                Toast.makeText(getContext(), "Item Removed From Favourites", Toast.LENGTH_SHORT).show();
             }
 
             @Override

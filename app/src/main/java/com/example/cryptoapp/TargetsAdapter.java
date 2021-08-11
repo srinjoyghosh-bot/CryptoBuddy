@@ -10,10 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.jetbrains.annotations.NotNull;
 
 public class TargetsAdapter extends FirebaseRecyclerAdapter<CryptoTargets, TargetsAdapter.targetViewholder> {
+    private DatabaseReference deletedRef;
     /**
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
      * {@link FirebaseRecyclerOptions} for configuration options.
@@ -53,9 +57,14 @@ public class TargetsAdapter extends FirebaseRecyclerAdapter<CryptoTargets, Targe
     }
     public void deleteItem(int position)
     {
+        deletedRef=getSnapshots().getSnapshot(position).getRef();
         getSnapshots().getSnapshot(position).getRef().removeValue();
-
-
+    }
+    public void addItem(CryptoTargets crypto,int position)
+    {
+        DatabaseReference favRef= FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("targets");
+        favRef.child(deletedRef.getKey()).setValue(crypto);
+        notifyDataSetChanged();
     }
 
 }

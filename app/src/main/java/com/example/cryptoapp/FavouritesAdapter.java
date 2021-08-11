@@ -12,16 +12,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+
 import okhttp3.internal.cache.DiskLruCache;
 
 public class FavouritesAdapter extends FirebaseRecyclerAdapter<Crypto,FavouritesAdapter.favouritesViewHolder> {
     private OnItemClickListener listener;
+    private DatabaseReference deletedRef;
 
     /**
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
@@ -82,9 +89,14 @@ public class FavouritesAdapter extends FirebaseRecyclerAdapter<Crypto,Favourites
 
     public void deleteItem(int position)
     {
+        deletedRef=getSnapshots().getSnapshot(position).getRef();
         getSnapshots().getSnapshot(position).getRef().removeValue();
-
-
+    }
+    public void addItem(Crypto crypto,int position)
+    {
+        DatabaseReference favRef=FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("favourites");
+        favRef.child(deletedRef.getKey()).setValue(crypto);
+        notifyDataSetChanged();
     }
 
 
