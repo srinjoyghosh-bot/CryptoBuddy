@@ -42,10 +42,10 @@
 >Clicking on any of the cryptocurrencies, takes you to the activity containing the graph of exchange rates of the last 7 days(daily highest and daily lowest). One can click on the dates to open a date picker and select their own range of dates to see the trends in the cryptocurrency. Also one can select any one of US Dollar, Euro, Yen , Swiss Franc, and Indian Rupee from the currency spinner. On the top right are the buttons to add to favourites and to set target and stop losses.
 
 ![crypto](./CryptoBuddy_Screenshots/crypto_activity.png) ![target](./CryptoBuddy_Screenshots/set_target_and_stop_loss.png)
->Go to Favourites, one can see their chosen list of favourite crycptocurrenices. Clicking on any of them opens the activity with the graph. one can swipe to remove an intem from favourites.
+>Go to Favourites, one can see their chosen list of favourite crycptocurrenices. Clicking on any of them opens the activity with the graph. one can swipe to remove an intem from favourites and after deleting , one has the option to undo their action if they deleted by mistake. On the top right, on clicking the 3 dots, one gets the option to delete all favourites.
 
 ![favourites](./CryptoBuddy_Screenshots/fav_fragment.png)
->Lastly, go to Targets to see your set of targets and stop losses in the cryptocurrencies you have invested in. Here also one can delete by swiping and also theres an delete all option in the option menu(click three dots at top right)
+>Lastly, go to Targets to see your set of targets and stop losses in the cryptocurrencies you have invested in. Here also one can delete by swiping,undo their action(if needed) and also theres an delete all option in the option menu(click three dots at top right)
 
 ![targets](./CryptoBuddy_Screenshots/targets_frag.png)
 
